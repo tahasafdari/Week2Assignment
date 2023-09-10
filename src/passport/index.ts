@@ -17,8 +17,8 @@ passport.use(
         return done(null, false);
       }
       // convert user to plain object to get rid of binary row type
-      const loginUser: LoginUser = user.toObject();
-      return done(null, loginUser, {message: 'Logged In Successfully'}); // use spread syntax to create shallow copy to get rid of binary row type
+      const UserLogin: LoginUser = user.toObject();
+      return done(null, UserLogin, {message: 'Logged In Successfully'}); // use spread syntax to create shallow copy to get rid of binary row type
     } catch (err) {
       return done(err);
     }

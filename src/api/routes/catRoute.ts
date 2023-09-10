@@ -30,11 +30,19 @@ const upload = multer({dest: './uploads/', fileFilter});
 const router = express.Router();
 
 // TODO: add validation
+const catValidation = [
+  body('cat_name', 'Name is required').exists(),
+  body('weight', 'Weight is required').exists(),
+  body('birthdate', 'Birthdate is required').exists(),
+  body('location.type', 'Location type is required').exists(),
+  body('owner._id', 'Owner id is required').exists(),
+];
 
 router
   .route('/')
   .get(catListGet)
   .post(
+    catValidation,
     passport.authenticate('jwt', {session: false}),
     upload.single('cat'),
     makeThumbnail,
